@@ -1,6 +1,8 @@
-<canvas id=c width=400 height=400></canvas><script>
-g=c.getContext`2d`;s=[[5,5]];d=[1,0];f=[10,10];
+<meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><style>body{margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#222;touch-action:none}canvas{background:#000;max-width:100vw;max-height:100vh}</style><canvas id=c width=400 height=400></canvas><script>
+g=c.getContext`2d`;s=[[5,5]];d=[1,0];f=[10,10];x=y=0;
 onkeydown=e=>d=[[0,-1],[-1,0],[0,1],[1,0]][e.keyCode-37]||d;
+ontouchstart=e=>{x=e.touches[0].clientX;y=e.touches[0].clientY};
+ontouchend=e=>{a=e.changedTouches[0].clientX-x;b=e.changedTouches[0].clientY-y;d=Math.abs(a)>Math.abs(b)?[a>0?1:-1,0]:[0,b>0?1:-1]};
 setInterval(_=>{h=[s[0][0]+d[0],s[0][1]+d[1]];
 if(h[0]<0||h[0]>19||h[1]<0||h[1]>19||s.some(p=>p[0]==h[0]&&p[1]==h[1]))return s=[[5,5]],d=[1,0];
 s.unshift(h);h[0]==f[0]&&h[1]==f[1]?f=[Math.random()*20|0,Math.random()*20|0]:s.pop();
