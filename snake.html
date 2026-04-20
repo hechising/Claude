@@ -1,11 +1,13 @@
-<meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><style>body{margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#222;touch-action:none}canvas{background:#000;max-width:100vw;max-height:100vh}</style><canvas id=c width=400 height=400></canvas><script>
-g=c.getContext`2d`;s=[[5,5]];d=[1,0];f=[10,10];x=y=0;
+<meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><style>body{margin:0;display:flex;flex-direction:column;align-items:center;background:#222;touch-action:none;font-family:sans-serif}canvas{background:#000;max-width:100vw}button{width:70px;height:70px;font-size:30px;margin:5px;background:#444;color:#fff;border:0;border-radius:10px}.r{display:flex}</style>
+<canvas id=c width=400 height=400></canvas>
+<div><button ontouchstart="d=[0,-1]" onclick="d=[0,-1]">↑</button></div>
+<div class=r><button ontouchstart="d=[-1,0]" onclick="d=[-1,0]">←</button><button ontouchstart="d=[0,1]" onclick="d=[0,1]">↓</button><button ontouchstart="d=[1,0]" onclick="d=[1,0]">→</button></div>
+<script>
+g=c.getContext`2d`;s=[[5,5]];d=[1,0];f=[10,10];
 onkeydown=e=>d=[[0,-1],[-1,0],[0,1],[1,0]][e.keyCode-37]||d;
-ontouchstart=e=>{x=e.touches[0].clientX;y=e.touches[0].clientY};
-ontouchend=e=>{a=e.changedTouches[0].clientX-x;b=e.changedTouches[0].clientY-y;d=Math.abs(a)>Math.abs(b)?[a>0?1:-1,0]:[0,b>0?1:-1]};
 setInterval(_=>{h=[s[0][0]+d[0],s[0][1]+d[1]];
 if(h[0]<0||h[0]>19||h[1]<0||h[1]>19||s.some(p=>p[0]==h[0]&&p[1]==h[1]))return s=[[5,5]],d=[1,0];
 s.unshift(h);h[0]==f[0]&&h[1]==f[1]?f=[Math.random()*20|0,Math.random()*20|0]:s.pop();
 g.fillStyle='#000';g.fillRect(0,0,400,400);g.fillStyle='#0f0';s.map(p=>g.fillRect(p[0]*20,p[1]*20,19,19));
-g.fillStyle='red';g.fillRect(f[0]*20,f[1]*20,19,19)},100)
+g.fillStyle='red';g.fillRect(f[0]*20,f[1]*20,19,19)},120)
 </script>
