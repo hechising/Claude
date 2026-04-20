@@ -1,0 +1,9 @@
+<canvas id=c width=400 height=400></canvas><script>
+g=c.getContext`2d`;s=[[5,5]];d=[1,0];f=[10,10];
+onkeydown=e=>d=[[0,-1],[-1,0],[0,1],[1,0]][e.keyCode-37]||d;
+setInterval(_=>{h=[s[0][0]+d[0],s[0][1]+d[1]];
+if(h[0]<0||h[0]>19||h[1]<0||h[1]>19||s.some(p=>p[0]==h[0]&&p[1]==h[1]))return s=[[5,5]],d=[1,0];
+s.unshift(h);h[0]==f[0]&&h[1]==f[1]?f=[Math.random()*20|0,Math.random()*20|0]:s.pop();
+g.fillStyle='#000';g.fillRect(0,0,400,400);g.fillStyle='#0f0';s.map(p=>g.fillRect(p[0]*20,p[1]*20,19,19));
+g.fillStyle='red';g.fillRect(f[0]*20,f[1]*20,19,19)},100)
+</script>
